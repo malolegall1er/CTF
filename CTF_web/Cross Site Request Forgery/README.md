@@ -15,3 +15,11 @@ Captures d’écran du challenge **CSRF** : la ressource n’est accessible que 
 
 4. **Résultat** : accès autorisé et flag affiché.
    ![Étape 4 — Flag obtenu (CSRF)](Images/image_016.png)
+
+## Remédiation
+
+- Ajouter un **token CSRF** (par formulaire / par requête) vérifié côté serveur.
+- Activer **SameSite=Lax/Strict** sur les cookies de session (et `Secure` + `HttpOnly`).
+- Vérifier **Origin/Referer** pour les actions sensibles (en complément, pas en unique défense).
+- Éviter les actions sensibles en GET : utiliser **POST** + re-validation (mot de passe / 2FA) si critique.
+- Protéger les endpoints API (CORS maîtrisé, tokens, double-submit cookie si adapté).

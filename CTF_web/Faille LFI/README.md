@@ -21,3 +21,12 @@ Captures d’écran autour d’un challenge “LFI / upload” : tentative d’u
 
 6. **Résultat** : upload de `/tmp/shell.php` validé, et flag affiché par le challenge.
    ![Étape 6 — Flag obtenu + /tmp/shell.php uploadé](Images/image_022.png)
+
+
+## Remédiation
+
+- Éviter les `include`/`require` basés sur une valeur utilisateur ; préférer un **routing** / mapping fixe.
+- Si un chargement de fichier est indispensable : **allowlist stricte** des fichiers (ex: `home`, `about`, `contact` → chemins).
+- Utiliser `realpath` + vérification de préfixe, et bloquer encodages/variantes (`../`, `%2e`, null byte, etc.).
+- Durcir la config : `allow_url_include=Off`, `open_basedir`, permissions minimales, secrets hors webroot.
+- Surveiller et tester régulièrement (OWASP LFI/RFI) + logs/alerting.

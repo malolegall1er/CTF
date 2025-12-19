@@ -12,3 +12,12 @@ Captures d’écran du challenge **XSS** (niveau 2) : exploitation d’un param�
 
 3. **Résultat** : le challenge renvoie le flag après l’exécution de l’injection.
    ![Étape 3 — Flag obtenu (XSS 2)](Images/image_009.png)
+
+
+## Remédiation
+
+- **Échapper/encoder en sortie** (HTML, attributs, URL, JS) plutôt que “filtrer” en entrée.
+- **Éviter les sinks dangereux** (`innerHTML`, `document.write`, `eval`, templates non échappés) et préférer `textContent` / APIs DOM sûres.
+- Mettre une **Content Security Policy (CSP)** restrictive (au minimum bloquer l’inline/script non approuvé).
+- Cookies de session en **HttpOnly + Secure + SameSite**, et limiter l’exposition de données sensibles côté client.
+- Ajouter des contrôles côté serveur : **validation/allowlist**, logs, et tests (OWASP XSS / linters SAST/DAST).

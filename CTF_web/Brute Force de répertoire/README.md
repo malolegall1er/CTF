@@ -18,3 +18,11 @@ Captures d’écran du challenge **bruteforce / discovery de répertoires** : d�
 
 5. **Résultat** : page “Congratulations” affichant le flag.
    ![Étape 5 — Flag obtenu](Images/image_032.png)
+
+## Remédiation
+
+- **Supprimer** les fichiers/dossiers sensibles du webroot (backups `.zip/.bak`, `.env`, dumps, anciens répertoires).
+- Désactiver le **directory listing** et configurer des **404/403** propres (pas d’index exposé).
+- Protéger les zones sensibles : **authentification/autorisation** + segmentation (admin non public si possible).
+- Mettre du **rate limiting / anti-enum** (ban temporaire, CAPTCHA sur endpoints critiques) et surveiller les logs.
+- Ajouter des en-têtes de sécurité et une **surface minimale** (principe du “least exposure”).

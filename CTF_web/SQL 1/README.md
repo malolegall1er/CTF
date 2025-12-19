@@ -15,3 +15,12 @@ Captures d’écran du challenge **SQL Injection** (niveau 1) : énumération de
 
 4. **Résultat final** : la valeur “FortyTwo” (mise en minuscules selon l’indication) est hashée en SHA-256 → flag affiché.
    ![Étape 4 — Flag final (SHA-256)](Images/image_002.png)
+
+
+## Remédiation
+
+- Utiliser des **requêtes préparées / paramètres bindés** (ou un ORM) : jamais de concaténation de chaînes dans le SQL.
+- Appliquer une **allowlist** sur les champs “dynamiques” (tri, colonne, ordre), sinon mapping côté serveur.
+- Compte SQL en **moindre privilège** (pas de droits admin ; séparation lecture/écriture si possible).
+- Gérer proprement les erreurs : **pas de messages SQL** en production, et journalisation côté serveur.
+- Ajouter de la **détection** (WAF/rate-limit) + tests automatisés (OWASP SQLi).
